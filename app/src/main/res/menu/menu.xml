@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/homeFragment"
+        android:enabled="true"
+        android:icon="@drawable/home_icon"
+        android:title="Главная"
+        />
+    <item
+        android:id="@+id/categoryFragment"
+        android:enabled="true"
+        android:icon="@drawable/book_icon"
+        android:title="Категория">
+    </item>
+    <item
+        android:id="@+id/achievementsFragment"
+        android:enabled="true"
+        android:icon="@drawable/cup_icon"
+        android:title="Достижения"/>
+
+
+    <item
+        android:id="@+id/profileFragment"
+        android:enabled="true"
+        android:icon="@drawable/profile_icon"
+        android:title="Профиль">
+    </item>
+</menu>

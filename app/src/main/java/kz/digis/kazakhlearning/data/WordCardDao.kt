@@ -1,0 +1,20 @@
+package kz.digis.kazakhlearning.data
+
+import androidx.room.*
+import kz.digis.kazakhlearning.data.models.WordCard
+
+@Dao
+interface WordCardDao {
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertWord(wordCard: WordCard)
+
+    @Query("UPDATE word_cards SET isKnown = 1 WHERE id = :wordId")
+    suspend fun markAsKnown(wordId: Int)
+
+    @Query("SELECT * FROM word_cards WHERE category = :category")
+    fun getWordsByCategory(category: String): List<WordCard>
+
+    @Query("SELECT * FROM word_cards WHERE isKnown = :status")
+    fun getWordsByKnownStatus(status: Boolean): List<WordCard>
+}

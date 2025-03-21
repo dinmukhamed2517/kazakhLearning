@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "208732892674",
+    "project_id": "kazakh-54212",
+    "storage_bucket": "kazakh-54212.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:208732892674:android:65e928dde90a2b0a84811b",
+        "android_client_info": {
+          "package_name": "kz.digis.kazakhlearning"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAynMTRAJIy5svzaGEFGZxdFILJVU7siAg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

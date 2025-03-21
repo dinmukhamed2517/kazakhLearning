@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    android:background="@color/white"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="16dp">
+
+
+
+    <com.wajahatkarim3.easyflipview.EasyFlipView
+        android:id="@+id/flipView"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        app:flipDuration="600"
+        app:flipOnTouch="true"
+        app:layout_constraintBottom_toTopOf="@id/known_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="250dp"
+            android:layout_height="400dp"
+            app:cardCornerRadius="10dp"
+            android:backgroundTint="@color/light_grey"
+            >
+            <LinearLayout
+                android:id="@+id/back_side"
+                android:layout_width="250dp"
+                android:layout_height="400dp"
+                android:background="@color/light_grey"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/tvTranslation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/black"
+                    android:textSize="22sp" />
+
+                <TextView
+                    android:id="@+id/tvDescription"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="250dp"
+            android:layout_height="400dp"
+            android:backgroundTint="@color/light_grey"
+            app:cardCornerRadius="10dp"
+            >
+            <LinearLayout
+                android:id="@+id/front_side"
+                android:layout_width="250dp"
+                android:layout_height="400dp"
+                android:background="@color/light_grey"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/tvKazakhWord"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/black"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <ImageButton
+                    android:id="@+id/btnPlayAudio"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@null"
+                    android:src="@android:drawable/ic_media_play" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+
+    </com.wajahatkarim3.easyflipview.EasyFlipView>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/known_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="60dp"
+        android:backgroundTint="@color/main_color"
+        android:text="Я знаю"
+        app:cornerRadius="10dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toTopOf="@id/btnNextWord"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnNextWord"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="60dp"
+        android:backgroundTint="@color/main_color"
+        android:text="Следующее слово"
+        app:cornerRadius="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
