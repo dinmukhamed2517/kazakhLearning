@@ -1,5 +1,6 @@
 package kz.digis.kazakhlearning.presentation.adapters
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -32,12 +33,16 @@ class AchievementAdapter:ListAdapter<Achievement, BaseAchievementViewHolder<*>>(
     }
 
     override fun onBindViewHolder(holder: BaseAchievementViewHolder<*>, position: Int) {
+
         holder.bindView(getItem(position))
     }
 
     inner class AchievementViewHolder(binding:ItemAchievementBinding):BaseAchievementViewHolder<ItemAchievementBinding>(binding) {
         override fun bindView(item: Achievement) {
+
             with(binding){
+                Log.d("adapter", "${item}")
+                itemView.alpha =  if (item.isUnlocked) 1f else 0.5f
                 achievementImage.setImageResource(item.imageId)
                 achievementTxt.text = item.title
                 if(item.isUnlocked){

@@ -1,5 +1,6 @@
 package kz.digis.kazakhlearning.presentation.screens
 
+import android.util.Log
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView.LayoutManager
@@ -33,19 +34,27 @@ class AchievementsFragment: BaseFragment<FragmentAchievementsBinding>(FragmentAc
     override fun onBindView() {
         super.onBindView()
 
-        userDao.getDataLiveData.observe(viewLifecycleOwner) { userData ->
-            binding.loadingView.isVisible = false
-            for (achievement in achievements){
-                if(userData?.achievements?.contains(achievement) == true){
-
-                }
-            }
-        }
         val adapter = AchievementAdapter()
         binding.achievementRecycler.adapter = adapter
-        binding.achievementRecycler.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL, false)
-        adapter.submitList(achievements)
+        binding.achievementRecycler.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+
+        binding.loadingView.isVisible = true
+        userDao.getData()
+
+        userDao.getDataLiveData.observe(viewLifecycleOwner) { userData ->
+            binding.loadingView.isVisible = false
+
+            val unlockedAchievements = userData?.achievements?.values?.toList() ?: emptyList()
+            Log.d("unlockedAchievements", "${unlockedAchievements}")
+            val mergedAchievements = achievements.map { achievement ->
+                val isUnlocked = unlockedAchievements.any { it.title == achievement.title }
+                achievement.copy(isUnlocked = isUnlocked)
+            }
+
+            adapter.submitList(unlockedAchievements)
+        }
     }
+
 
 
 

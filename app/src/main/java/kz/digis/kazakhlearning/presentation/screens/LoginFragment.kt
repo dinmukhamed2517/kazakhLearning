@@ -39,6 +39,9 @@ class LoginFragment: BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::in
                 Toast.makeText(requireContext(), "Заполните все поля", Toast.LENGTH_SHORT).show()
             }
         }
+        binding.forgotPassword.setOnClickListener {
+            findNavController().navigate(R.id.action_loginFragment_to_forgotPasswordFragment)
+        }
         binding.noAccountBtn.setOnClickListener {
             findNavController().navigate(
                 R.id.action_loginFragment_to_registerFragment

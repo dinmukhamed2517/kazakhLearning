@@ -7,16 +7,23 @@
         android:title="Главная"
         />
     <item
+        android:id="@+id/grammarCategoryFragment"
+        android:enabled="true"
+        android:icon="@drawable/pencil_icon"
+        android:title="Грамматика"
+        />
+
+    <item
         android:id="@+id/categoryFragment"
         android:enabled="true"
         android:icon="@drawable/book_icon"
         android:title="Категория">
     </item>
     <item
-        android:id="@+id/achievementsFragment"
+        android:id="@+id/chatFragment"
         android:enabled="true"
-        android:icon="@drawable/cup_icon"
-        android:title="Достижения"/>
+        android:icon="@drawable/baseline_chat_24"
+        android:title="Чат"/>
 
 
     <item

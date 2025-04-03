@@ -1,15 +1,26 @@
 package kz.digis.kazakhlearning.presentation.screens
 
+import androidx.core.widget.addTextChangedListener
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 import kz.digis.kazakhlearning.R
+import kz.digis.kazakhlearning.data.CategoryDao
 import kz.digis.kazakhlearning.data.models.Category
 import kz.digis.kazakhlearning.databinding.FragmentCategoryBinding
 import kz.digis.kazakhlearning.presentation.adapters.CategoryAdapter
 import kz.digis.kazakhlearning.presentation.base.BaseFragment
+import javax.inject.Inject
 
+
+
+
+@AndroidEntryPoint
 class CategoryFragment: BaseFragment<FragmentCategoryBinding>(FragmentCategoryBinding::inflate) {
-
+    @Inject
+    lateinit var categoryDao: CategoryDao
 
     private val categoryList:List<Category> = listOf(
         Category(2, R.drawable.category2, "Цифры"),
@@ -25,17 +36,21 @@ class CategoryFragment: BaseFragment<FragmentCategoryBinding>(FragmentCategoryBi
     override fun onBindView() {
         super.onBindView()
 
-
-
         val adapter = CategoryAdapter()
         binding.categoryRecycler.adapter = adapter
-        binding.categoryRecycler.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-        adapter.submitList(categoryList)
+        binding.categoryRecycler.layoutManager = LinearLayoutManager(requireContext())
+
+        adapter.submitFullList(categoryList)
+
+        binding.searchInput.addTextChangedListener { text ->
+            adapter.filter(text.toString())
+        }
 
         adapter.itemClick = { category ->
-            val action = CategoryFragmentDirections.actionCategoryFragmentToCategoryCardFragment(category.categoryTitle)
-            findNavController().navigate(action)
-
+            lifecycleScope.launch {
+                categoryDao.insertCategory(category)
+            }
+            findNavController().navigate(CategoryFragmentDirections.actionCategoryFragmentToCategoryCardFragment(category.categoryTitle))
         }
     }
 

@@ -2,22 +2,34 @@ package kz.digis.kazakhlearning.presentation.screens
 
 import android.media.AudioAttributes
 import android.media.MediaPlayer
+import android.net.Uri
+import android.os.CountDownTimer
+import androidx.core.view.isVisible
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
+import kz.digis.kazakhlearning.R
+import kz.digis.kazakhlearning.data.firebase.UserDao
 import kz.digis.kazakhlearning.data.local.LocalWordProvider
 import kz.digis.kazakhlearning.data.models.Category
 import kz.digis.kazakhlearning.data.models.WordCard
 import kz.digis.kazakhlearning.databinding.FragmentCategoryCardBinding
 import kz.digis.kazakhlearning.presentation.base.BaseFragment
-
-
-
-
+import kz.digis.kazakhlearning.presentation.viewmodels.WordViewModel
+import javax.inject.Inject
 
 
 @AndroidEntryPoint
 class CategoryCardFragment : BaseFragment<FragmentCategoryCardBinding>(FragmentCategoryCardBinding::inflate) {
+
+    private var timer: CountDownTimer? = null
+
+    @Inject
+    lateinit var userDao: UserDao
+    private val wordViewModel: WordViewModel by viewModels()
 
     private val args: CategoryCardFragmentArgs by navArgs()
     private var currentIndex = 0
@@ -26,8 +38,16 @@ class CategoryCardFragment : BaseFragment<FragmentCategoryCardBinding>(FragmentC
 
     override fun onBindView() {
         super.onBindView()
+        binding.loadingView.isVisible = true
 
         binding.categoryText.text = args.category
+        userDao.getData()
+        userDao.getDataLiveData.observe(viewLifecycleOwner) { user ->
+            user?.dailyTime?.let { timeInMinutes ->
+                startTimer(timeInMinutes * 60 * 1000L)
+            }
+            binding.loadingView.isVisible = false
+        }
 
         filteredWords = LocalWordProvider.wordList.filter { it.category == args.category }
 
@@ -38,7 +58,8 @@ class CategoryCardFragment : BaseFragment<FragmentCategoryCardBinding>(FragmentC
 
         updateWordCard()
 
-        binding.btnPlayAudio.setOnClickListener {
+
+        binding.btnAudio.setOnClickListener {
             filteredWords[currentIndex].audioUrl?.let { audioUrl -> playAudio(audioUrl) }
         }
 
@@ -57,28 +78,66 @@ class CategoryCardFragment : BaseFragment<FragmentCategoryCardBinding>(FragmentC
             }
             updateWordCard()
         }
+
     }
 
+    private fun startTimer(millisInFuture: Long) {
+        timer?.cancel()
+        timer = object : CountDownTimer(millisInFuture, 1000) {
+            override fun onTick(millisUntilFinished: Long) {
+                val minutes = millisUntilFinished / 1000 / 60
+                val seconds = (millisUntilFinished / 1000) % 60
+                binding.timingText.text = String.format("%d:%02d", minutes, seconds)
+
+                userDao.saveAppTime(minutes.toInt())
+            }
+
+            override fun onFinish() {
+                binding.timingText.text = "0:00"
+                userDao.saveAppTime(0)
+            }
+        }.start()
+    }
+
+
+    override fun onDestroyView() {
+        timer?.cancel()
+        mediaPlayer?.release()
+        mediaPlayer = null
+
+        super.onDestroyView()
+    }
     private fun updateWordCard() {
         val wordCard = filteredWords[currentIndex]
         binding.tvTranslation.text = wordCard.translation
         binding.tvDescription.text = wordCard.description
         binding.tvKazakhWord.text = wordCard.kazakhWord
-    }
-
-    private fun playAudio(audioUrl: String) {
-        val mediaPlayer = MediaPlayer().apply {
-            setAudioAttributes(
-                AudioAttributes.Builder()
-                    .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
-                    .setUsage(AudioAttributes.USAGE_MEDIA)
-                    .build()
-            )
-            setDataSource(audioUrl)
-            prepare()
-            start()
+        if(wordCard.image != null){
+            binding.wordcardImage.setImageResource(wordCard.image)
         }
     }
+
+    private var mediaPlayer: MediaPlayer? = null
+
+    private fun playAudio(audioFileName: String) {
+        val resId = resources.getIdentifier(audioFileName, "raw", requireContext().packageName)
+        if (resId == 0) {
+            return
+        }
+
+        mediaPlayer?.release() // Release previous if any
+        mediaPlayer = MediaPlayer.create(requireContext(), resId)
+        mediaPlayer?.apply {
+            setOnPreparedListener {
+                start()
+            }
+            setOnCompletionListener {
+                release()
+                mediaPlayer = null
+            }
+        }
+    }
+
 
     private fun navigateToTestFragment() {
         findNavController().navigate(CategoryCardFragmentDirections.actionCategoryCardFragmentToTestFragment(args.category))

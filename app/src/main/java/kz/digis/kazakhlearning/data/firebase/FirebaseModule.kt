@@ -12,6 +12,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import kz.digis.kazakhlearning.data.AppDatabase
+import kz.digis.kazakhlearning.data.CategoryDao
 import kz.digis.kazakhlearning.data.WordCardDao
 import javax.inject.Singleton
 
@@ -50,12 +51,18 @@ object FirebaseModule {
             context,
             AppDatabase::class.java,
             "word_database"
-        ).build()
+        )
+            .fallbackToDestructiveMigration()
+            .build()
     }
 
     @Provides
     fun provideWordCardDao(database: AppDatabase): WordCardDao {
         return database.wordCardDao()
+    }
+    @Provides
+    fun provideCategoryDao(database:AppDatabase):CategoryDao{
+        return database.categoryDao()
     }
 
 }

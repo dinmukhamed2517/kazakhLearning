@@ -62,13 +62,11 @@ class TestFragment : Fragment() {
         val category = args.category
         currentTest = getAllTests().find { it.category == category } ?: getAllTests().first()
         loadQuestion()
-        setupListeners()
     }
 
     private fun loadQuestion() {
         currentQuestion = currentTest.questions[currentQuestionIndex]
         binding.questionText.text = currentQuestion.title
-        binding.cardView4.setCardBackgroundColor(ContextCompat.getColor(requireContext(), R.color.main_color))
 
         isAnswered = false
 
@@ -86,7 +84,6 @@ class TestFragment : Fragment() {
             pair.first.setOnClickListener { checkAnswer(pair.second.text.toString()) }
         }
 
-        updateQuestionButtons()
     }
 
     private fun checkAnswer(selectedAnswer: String) {
@@ -102,7 +99,6 @@ class TestFragment : Fragment() {
             binding.questionText.text = "Неправильно!"
         }
 
-        updateQuestionButtons()
 
         binding.questionText.postDelayed({
             if (currentQuestionIndex < currentTest.questions.size - 1) {
@@ -110,7 +106,6 @@ class TestFragment : Fragment() {
                 loadQuestion()
             } else {
 
-                updateQuestionButtons()
                 val correctAnswers = answeredQuestions.values.count { it }
                 val totalQuestions = currentTest.questions.size
                 if(correctAnswers > totalQuestions/2){
@@ -124,50 +119,7 @@ class TestFragment : Fragment() {
         }, 1000)
     }
 
-    private fun updateQuestionButtons() {
-        val questionButtons = listOf(
-            binding.question1 to binding.question1Text,
-            binding.question2 to binding.question2Text,
-            binding.question3 to binding.question3Text,
-            binding.question4 to binding.question4Text,
-            binding.question5 to binding.question5Text,
-            binding.question6 to binding.question6Text
-        )
 
-        questionButtons.forEachIndexed { index, (button, textView) ->
-            when {
-                answeredQuestions.containsKey(index) -> {
-                    val color = if (answeredQuestions[index] == true) R.color.green else R.color.red
-                    button.setCardBackgroundColor(ContextCompat.getColor(requireContext(), color))
-                    textView.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
-                }
-                index == currentQuestionIndex -> {
-                    button.setCardBackgroundColor(ContextCompat.getColor(requireContext(), R.color.main_color))
-                    textView.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
-                }
-                else -> {
-                    button.setCardBackgroundColor(ContextCompat.getColor(requireContext(), R.color.white))
-                    textView.setTextColor(ContextCompat.getColor(requireContext(), R.color.main_color))
-                }
-            }
-        }
-    }
-
-    private fun setupListeners() {
-        val questionButtons = listOf(
-            binding.question1, binding.question2, binding.question3,
-            binding.question4, binding.question5, binding.question6
-        )
-
-        questionButtons.forEachIndexed { index, button ->
-            button.setOnClickListener {
-                if (index < currentTest.questions.size && !answeredQuestions.containsKey(index) && isAnswered) {
-                    currentQuestionIndex = index
-                    loadQuestion()
-                }
-            }
-        }
-    }
 
 
     private fun showSuccessDialog(correctAnswers: Int, totalQuestions: Int) {
@@ -181,7 +133,14 @@ class TestFragment : Fragment() {
 
 
         successBinding.okBtn.setOnClickListener {
-            findNavController().navigate(R.id.action_testFragment_to_categoryFragment)
+            if (isAdded && findNavController().currentDestination?.id == R.id.testFragment) {
+                findNavController().navigate(
+                    TestFragmentDirections.actionTestFragmentToCategoryCardFragment(args.category)
+                )
+            }
+            else{
+                dialog.dismiss()
+            }
         }
 
         dialog.show()

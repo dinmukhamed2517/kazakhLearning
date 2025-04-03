@@ -14,6 +14,9 @@
         <action
             android:id="@+id/action_loginFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_forgotPasswordFragment"
+            app:destination="@id/forgotPasswordFragment" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
@@ -29,7 +32,11 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="kz.digis.kazakhlearning.presentation.screens.HomeFragment"
-        android:label="HomeFragment" />
+        android:label="HomeFragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_categoryCardFragment"
+            app:destination="@id/categoryCardFragment" />
+    </fragment>
     <fragment
         android:id="@+id/userDetailsFragment"
         android:name="kz.digis.kazakhlearning.presentation.screens.UserDetailsFragment"
@@ -89,6 +96,9 @@
         <action
             android:id="@+id/action_testFragment_to_categoryFragment"
             app:destination="@id/categoryFragment" />
+        <action
+            android:id="@+id/action_testFragment_to_categoryCardFragment"
+            app:destination="@id/categoryCardFragment" />
     </fragment>
     <fragment
         android:id="@+id/timePickerFragment"
@@ -98,4 +108,28 @@
             android:id="@+id/action_timePickerFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/grammarFragment"
+        android:name="kz.digis.kazakhlearning.presentation.screens.GrammarFragment"
+        android:label="GrammarFragment" >
+        <argument
+            android:name="category"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/grammarCategoryFragment"
+        android:name="kz.digis.kazakhlearning.presentation.screens.GrammarCategoryFragment"
+        android:label="GrammarCategoryFragment" >
+        <action
+            android:id="@+id/action_grammarCategoryFragment_to_grammarFragment"
+            app:destination="@id/grammarFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/forgotPasswordFragment"
+        android:name="kz.digis.kazakhlearning.presentation.screens.ForgotPasswordFragment"
+        android:label="ForgotPasswordFragment" />
+    <fragment
+        android:id="@+id/chatFragment"
+        android:name="kz.digis.kazakhlearning.presentation.screens.ChatFragment"
+        android:label="ChatFragment" />
 </navigation>

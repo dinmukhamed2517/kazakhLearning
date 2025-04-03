@@ -1,5 +1,6 @@
 package kz.digis.kazakhlearning.data.models
 
+import androidx.annotation.DrawableRes
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
@@ -11,5 +12,7 @@ data class WordCard(
     val description: String = "",
     val audioUrl: String? = "",
     val category: String,
-    val isKnown: Boolean = false
+    val isKnown: Boolean = false,
+    @DrawableRes
+    val image:Int? = null
 )

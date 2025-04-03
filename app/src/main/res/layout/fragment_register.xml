@@ -5,41 +5,64 @@
     android:background="@color/white"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView15"
-        style="@style/Mont.SemiBold"
+
+    <LinearLayout
+        android:id="@+id/text_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:text="Зарегистрируй новый аккаунт"
-        android:textColor="@color/black"
-        android:textSize="20sp"
+        android:layout_marginTop="140dp"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView5"
+            style="@style/Mont.SemiBold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Регистрация/"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+
+            />
+
+        <TextView
+            android:id="@+id/have_account_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Mont.SemiBold"
+            android:textColor="@color/secondary_text"
+            android:text="Войти"
+            />
+
+    </LinearLayout>
+
+
 
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/til_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="50dp"
+        android:layout_marginTop="15dp"
+
+        android:hint="Электронная почта"
         app:boxCornerRadiusBottomEnd="10dp"
         app:boxCornerRadiusBottomStart="10dp"
         app:boxCornerRadiusTopEnd="10dp"
         app:boxCornerRadiusTopStart="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="160dp"
-        android:hint="Электронная почта"
         app:hintTextColor="@color/black"
-        android:layout_marginHorizontal="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView15">
+        app:layout_constraintTop_toBottomOf="@+id/text_layout">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_email"
-            android:inputType="textEmailAddress"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:inputType="textEmailAddress" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -105,17 +128,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/have_account_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Уже есть аккант?"
-        android:textColor="@color/secondary_text"
-        app:layout_constraintEnd_toEndOf="@+id/til_password_repeat"
-        app:layout_constraintStart_toStartOf="@+id/til_password_repeat"
-        app:layout_constraintTop_toBottomOf="@+id/til_password_repeat" />
 
 
 

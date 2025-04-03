@@ -13,6 +13,23 @@ class CategoryAdapter: ListAdapter<Category, BaseCategoryViewHolder<*>>(Category
 
 
     var itemClick:((Category) -> Unit)? = null
+    private var originalList = listOf<Category>()
+
+    fun submitFullList(list: List<Category>) {
+        originalList = list
+        submitList(list)
+    }
+
+    fun filter(query: String) {
+        val filtered = if (query.isBlank()) {
+            originalList
+        } else {
+            originalList.filter {
+                it.categoryTitle.contains(query, ignoreCase = true)
+            }
+        }
+        submitList(filtered)
+    }
     class CategoryDiffUtils:DiffUtil.ItemCallback<Category>(){
         override fun areItemsTheSame(oldItem: Category, newItem: Category): Boolean {
             return oldItem.id == newItem.id

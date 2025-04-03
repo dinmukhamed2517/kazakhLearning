@@ -1,22 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:background="@color/white"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView15"
-        style="@style/Mont.SemiBold"
+
+
+    <LinearLayout
+        android:id="@+id/text_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:text="Войти в аккаунт"
-        android:textColor="@color/black"
-        android:textSize="20sp"
+        android:layout_marginTop="140dp"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView5"
+            style="@style/Mont.SemiBold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Войти/"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+
+            />
+
+        <TextView
+            android:id="@+id/no_account_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Mont.SemiBold"
+            android:textColor="@color/secondary_text"
+            android:text="Регистрация"
+            />
+
+    </LinearLayout>
+
+
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/til_email"
@@ -26,13 +50,13 @@
         app:boxCornerRadiusBottomStart="10dp"
         app:boxCornerRadiusTopEnd="10dp"
         app:boxCornerRadiusTopStart="10dp"
+        android:layout_marginTop="15dp"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="160dp"
         android:hint="Электронная почта"
         app:hintTextColor="@color/black"
         android:layout_marginHorizontal="50dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView15">
+        app:layout_constraintTop_toBottomOf="@+id/text_layout">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_email"
@@ -53,6 +77,7 @@
         android:layout_marginHorizontal="50dp"
         android:hint="Пароль"
         android:layout_marginTop="15dp"
+        style="@style/Mont"
         app:hintTextColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -83,21 +108,15 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/no_account_btn"
+        android:id="@+id/forgot_password"
         android:layout_width="wrap_content"
-        android:layout_marginTop="20dp"
         android:layout_height="wrap_content"
+        android:text="Забыли пароль?"
+        android:layout_marginTop="10dp"
         style="@style/Mont"
-        android:textColor="@color/black"
-        android:text="Нету аккаунта?"
         app:layout_constraintEnd_toEndOf="@+id/til_password"
         app:layout_constraintStart_toStartOf="@+id/til_password"
         app:layout_constraintTop_toBottomOf="@+id/til_password" />
-
-
-
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

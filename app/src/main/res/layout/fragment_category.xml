@@ -8,18 +8,58 @@
     android:layout_height="match_parent">
 
 
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/til_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="35dp"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="match_parent">
+
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                app:tint = "@color/main_color"
+                android:layout_margin="8dp"
+                android:src="@drawable/baseline_search_24"/>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/search_input"
+                android:layout_width="0dp"
+                android:textColor="@color/secondary_text"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="Введите категорию"
+                android:layout_height="match_parent"
+                />
+        </LinearLayout>
+
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+
     <TextView
         android:id="@+id/textView2"
         style="@style/Mont.SemiBold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginStart="40dp"
         android:text="Категории"
         android:textColor="@color/black"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/til_search" />
+
+
 
 
     <androidx.recyclerview.widget.RecyclerView

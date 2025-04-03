@@ -8,389 +8,139 @@
 
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/question_text"
         style="@style/Mont.SemiBold"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Проверь свои знания"
+        android:layout_margin="16dp"
         android:textColor="@color/black"
-        android:textSize="20sp"
+        android:textAlignment="center"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4">
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/question1"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginEnd="5dp"
-            app:cardCornerRadius="40dp">
-
-            <TextView
-                android:id="@+id/question1_text"
-                style="@style/Mont"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="1"
-                android:textColor="@color/main_color"
-                android:textSize="30sp" />
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/question2"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-
-            android:layout_marginEnd="5dp"
-            app:cardCornerRadius="40dp">
-
-            <TextView
-                android:id="@+id/question2_text"
-                style="@style/Mont"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="2"
-                android:textColor="@color/main_color"
-                android:textSize="30sp" />
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/question3"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-
-            android:layout_marginEnd="5dp"
-            app:cardCornerRadius="40dp">
-
-            <TextView
-                android:id="@+id/question3_text"
-                style="@style/Mont"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="3"
-                android:textColor="@color/main_color"
-                android:textSize="30sp" />
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/question4"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-
-            android:layout_marginEnd="5dp"
-            app:cardCornerRadius="40dp">
-
-            <TextView
-                android:id="@+id/question4_text"
-                style="@style/Mont"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="4"
-                android:textColor="@color/main_color"
-                android:textSize="30sp" />
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/question5"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-
-            android:layout_marginEnd="5dp"
-            app:cardCornerRadius="40dp">
-
-            <TextView
-                android:id="@+id/question5_text"
-                style="@style/Mont"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="5"
-                android:textColor="@color/main_color"
-                android:textSize="30sp" />
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/question6"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-
-            android:layout_marginEnd="5dp"
-            app:cardCornerRadius="40dp">
-
-            <TextView
-                android:id="@+id/question6_text"
-                style="@style/Mont"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="6"
-                android:textColor="@color/main_color"
-                android:textSize="30sp" />
-        </androidx.cardview.widget.CardView>
-
-    </LinearLayout>
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Что означает это слово: Cәлем" />
 
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cardView4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/light_grey"
-        app:strokeColor="@color/main_color"
-        android:layout_marginHorizontal="8dp"
+        android:id="@+id/materialCardView"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:layout_marginTop="30dp"
-        app:cardCornerRadius="12dp"
+        app:strokeColor="@color/main_color"
+        android:backgroundTint="@color/main_color"
+        app:cardCornerRadius="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+        app:layout_constraintTop_toBottomOf="@+id/question_text">
 
 
-        <TextView
-            android:id="@+id/question_text"
-            style="@style/Mont"
-            android:layout_width="match_parent"
-            android:layout_margin="16dp"
-            android:layout_height="match_parent"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            tools:text="Что означает это слово: Cәлем" />
-
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:src="@android:drawable/ic_media_play" />
 
     </com.google.android.material.card.MaterialCardView>
 
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/answer_a"
+    <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginHorizontal="10dp"
-        android:layout_marginTop="20dp"
-        app:cardCornerRadius="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView4">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/materialCardView">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardView6"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginStart="10dp"
-                android:backgroundTint="@color/secondaty_text"
-                app:cardCornerRadius="10dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <TextView
-                    style="@style/Mont.Bold"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:text="A"
-                    android:textColor="@color/white"
-                    android:textAlignment="center"
-                    android:textSize="28sp" />
-            </androidx.cardview.widget.CardView>
-
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/answer_a"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:layout_marginVertical="12dp"
+            android:layout_marginHorizontal="32dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/white"
+            app:cardCornerRadius="12dp">
 
             <TextView
                 android:id="@+id/response_text_1"
-                style="@style/Mont"
-                android:layout_width="0dp"
+                style="@style/Mont.SemiBold"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                tools:text="Маркакол"
-                android:textColor="@color/main_color"
-                android:textSize="16sp"
-                app:layout_constraintBottom_toBottomOf="@+id/cardView6"
-                app:layout_constraintHorizontal_weight="1"
-                app:layout_constraintStart_toEndOf="@+id/cardView6"
-                app:layout_constraintTop_toTopOf="@+id/cardView6" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
+                android:layout_gravity="center"
+                tools:text="Answer A"
+                android:textColor="@color/black" />
+        </com.google.android.material.card.MaterialCardView>
 
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/answer_b"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginHorizontal="10dp"
-        android:layout_marginTop="10dp"
-        app:cardCornerRadius="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/answer_a">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardView7"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginStart="10dp"
-                android:backgroundTint="@color/secondaty_text"
-                app:cardCornerRadius="10dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <TextView
-                    style="@style/Mont.Bold"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:text="B"
-                    android:textAlignment="center"
-                    android:textColor="@color/white"
-                    android:textSize="28sp" />
-            </androidx.cardview.widget.CardView>
-
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/answer_b"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:layout_marginHorizontal="32dp"
+            android:layout_marginVertical="12dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/white"
+            app:cardCornerRadius="12dp">
 
             <TextView
                 android:id="@+id/response_text_2"
-                style="@style/Mont"
-                android:layout_width="0dp"
+                style="@style/Mont.SemiBold"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                tools:text="Маркакол"
-                android:textColor="@color/main_color"
-                android:textSize="16sp"
-                app:layout_constraintBottom_toBottomOf="@+id/cardView7"
-                app:layout_constraintHorizontal_weight="1"
-                app:layout_constraintStart_toEndOf="@+id/cardView7"
-                app:layout_constraintTop_toTopOf="@+id/cardView7" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
+                android:layout_gravity="center"
+                tools:text="Answer A"
+                android:textColor="@color/black" />
+        </com.google.android.material.card.MaterialCardView>
+    </LinearLayout>
 
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/answer_c"
+    <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginHorizontal="10dp"
-        android:layout_marginTop="10dp"
-        app:cardCornerRadius="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/answer_b">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardView8"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginStart="10dp"
-                android:backgroundTint="@color/secondaty_text"
-                app:cardCornerRadius="10dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <TextView
-                    style="@style/Mont.Bold"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:text="C"
-                    android:textAlignment="center"
-                    android:textColor="@color/white"
-                    android:textSize="28sp" />
-            </androidx.cardview.widget.CardView>
-
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/answer_c"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:layout_marginHorizontal="32dp"
+            android:layout_marginVertical="12dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/white"
+            app:cardCornerRadius="12dp">
 
             <TextView
                 android:id="@+id/response_text_3"
-                style="@style/Mont"
-                android:layout_width="0dp"
+                style="@style/Mont.SemiBold"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                tools:text="Маркакол"
-                android:textColor="@color/main_color"
-                android:textSize="16sp"
-                app:layout_constraintBottom_toBottomOf="@+id/cardView8"
-                app:layout_constraintHorizontal_weight="1"
-                app:layout_constraintStart_toEndOf="@+id/cardView8"
-                app:layout_constraintTop_toTopOf="@+id/cardView8" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
+                android:layout_gravity="center"
+                tools:text="Answer A"
+                android:textColor="@color/black" />
+        </com.google.android.material.card.MaterialCardView>
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/answer_d"
-        android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginHorizontal="10dp"
-        app:cardCornerRadius="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/answer_c">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardView9"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginStart="10dp"
-                android:backgroundTint="@color/secondaty_text"
-                app:cardCornerRadius="10dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <TextView
-                    style="@style/Mont.Bold"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:text="D"
-                    android:textAlignment="center"
-                    android:textColor="@color/white"
-                    android:textSize="28sp" />
-            </androidx.cardview.widget.CardView>
-
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/answer_d"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:layout_marginHorizontal="32dp"
+            android:layout_marginVertical="12dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/white"
+            app:cardCornerRadius="12dp">
 
             <TextView
                 android:id="@+id/response_text_4"
-                style="@style/Mont"
-                android:layout_width="0dp"
+                style="@style/Mont.SemiBold"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                tools:text="Маркакол"
-                android:textColor="@color/main_color"
-                android:textSize="16sp"
-                app:layout_constraintBottom_toBottomOf="@+id/cardView9"
-                app:layout_constraintHorizontal_weight="1"
-                app:layout_constraintStart_toEndOf="@+id/cardView9"
-                app:layout_constraintTop_toTopOf="@+id/cardView9" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
-
+                android:layout_gravity="center"
+                tools:text="Answer A"
+                android:textColor="@color/black" />
+        </com.google.android.material.card.MaterialCardView>
+    </LinearLayout>
 
 
 

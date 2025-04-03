@@ -4,7 +4,6 @@
     android:layout_height="wrap_content"
     android:backgroundTint="@color/light_grey"
     app:strokeColor="@color/main_color"
-
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_margin="10dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">

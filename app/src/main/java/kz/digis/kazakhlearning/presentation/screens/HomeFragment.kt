@@ -2,63 +2,50 @@ package kz.digis.kazakhlearning.presentation.screens
 
 import android.media.AudioAttributes
 import android.media.MediaPlayer
+import androidx.core.view.isVisible
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import dagger.hilt.android.AndroidEntryPoint
+import kz.digis.kazakhlearning.R
+import kz.digis.kazakhlearning.data.CategoryDao
 import kz.digis.kazakhlearning.data.local.LocalWordProvider.wordList
+import kz.digis.kazakhlearning.data.models.Category
 import kz.digis.kazakhlearning.data.models.WordCard
 import kz.digis.kazakhlearning.databinding.FragmentHomeBinding
+import kz.digis.kazakhlearning.presentation.adapters.CategoryAdapter
 import kz.digis.kazakhlearning.presentation.base.BaseFragment
+import javax.inject.Inject
 
+
+@AndroidEntryPoint
 class HomeFragment: BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
 
 
-    private var currentIndex = 0
-
+    private val categoryList:List<Category> = listOf(
+        Category(2, R.drawable.category2, "Цифры"),
+        Category(3, R.drawable.category3, "Приветствия и прощания"),
+        )
+    @Inject lateinit var categoryDao: CategoryDao
     override fun onBindView() {
         super.onBindView()
 
-        updateWordCard()
+        val defaultAdapter =CategoryAdapter()
+        val adapter = CategoryAdapter()
+        binding.chosenCategoryRecycler.adapter = adapter
+        binding.chosenCategoryRecycler.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
 
-        binding.btnPlayAudio.setOnClickListener {
-            wordList[currentIndex].audioUrl?.let { it1 -> playAudio(it1) }
+        binding.defaultCategoryRecycler.adapter = defaultAdapter
+        binding.defaultCategoryRecycler.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        defaultAdapter.submitList(categoryList)
+        categoryDao.getAllChosenCategories().observe(viewLifecycleOwner) { categories ->
+            adapter.submitList(categories)
+            binding.continueText.isVisible = categories.isNotEmpty()
         }
 
-        binding.btnNextWord.setOnClickListener {
-            if (currentIndex < wordList.size - 1) {
-                currentIndex++
-            } else {
-                currentIndex = 0
-            }
-//            binding.flipView.flipTheView(true)
-            updateWordCard()
-        }
+        adapter.itemClick = { category ->
+            val action = HomeFragmentDirections.actionHomeFragmentToCategoryCardFragment(category.categoryTitle)
+            findNavController().navigate(action)
 
-
-    }
-
-    private fun updateWordCard() {
-        val wordCard = wordList[currentIndex]
-
-        binding.tvTranslation.text = wordCard.translation
-        binding.tvDescription.text = wordCard.description
-
-        binding.tvKazakhWord.text = wordCard.kazakhWord
-    }
-
-
-    private fun playAudio(audioUrl: String) {
-        val mediaPlayer = MediaPlayer().apply {
-            setAudioAttributes(
-                AudioAttributes.Builder()
-                    .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
-                    .setUsage(AudioAttributes.USAGE_MEDIA)
-                    .build()
-            )
-            setDataSource(audioUrl)
-            prepare()
-            start()
         }
     }
-
-
-
-
 }

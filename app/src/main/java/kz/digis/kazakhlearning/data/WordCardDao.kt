@@ -17,4 +17,8 @@ interface WordCardDao {
 
     @Query("SELECT * FROM word_cards WHERE isKnown = :status")
     fun getWordsByKnownStatus(status: Boolean): List<WordCard>
+    @Query("SELECT * FROM word_cards WHERE category = :category AND isKnown = 1")
+    suspend fun getKnownWords(category: String): List<WordCard>
+    @Update
+    suspend fun updateAll(cards: List<WordCard>)
 }
