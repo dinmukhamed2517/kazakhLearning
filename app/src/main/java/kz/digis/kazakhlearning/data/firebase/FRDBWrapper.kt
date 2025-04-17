@@ -69,6 +69,10 @@ abstract class FRDBWrapper<T> {
         }
     }
 
+    fun saveLearnedWordsCount(value:Int){
+        db.getReference(getTableName()).child("learnedWordsCount").setValue(value)
+    }
+
 //    fun saveProductToList(value: Product) {
 //        val Id = db.getReference(getTableName()).push().key
 //        if (Id != null) {

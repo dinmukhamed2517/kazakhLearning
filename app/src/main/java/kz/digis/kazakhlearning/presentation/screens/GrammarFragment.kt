@@ -31,61 +31,69 @@ class GrammarFragment : BaseFragment<FragmentGrammarBinding>(FragmentGrammarBind
 
     val sampleData = listOf(
         SentenceCategory(
-            name = "Цифры",
+            name = "Урок 1",
             sentences = listOf(
                 Sentence(id = 1, correctWords = listOf("Менде", "бес", "кітап", "бар")),
                 Sentence(id = 2, correctWords = listOf("Сенде", "он", "қалам", "бар", "ма?"))
             )
         ),
         SentenceCategory(
-            name = "Приветствия и прощания",
+            name = "Урок 2",
             sentences = listOf(
                 Sentence(id = 3, correctWords = listOf("Сәлеметсіз", "бе,", "сіз", "қалайсыз?")),
                 Sentence(id = 4, correctWords = listOf("Сау", "болыңыз,", "ертең", "көрісеміз"))
             )
         ),
         SentenceCategory(
-            name = "Семья",
+            name = "Урок 3",
             sentences = listOf(
                 Sentence(id = 5, correctWords = listOf("Менің", "анамның", "аты", "Айгүл")),
                 Sentence(id = 6, correctWords = listOf("Менің", "бауырым", "мектепке", "барады"))
             )
         ),
         SentenceCategory(
-            name = "Животные",
+            name = "Урок 4",
             sentences = listOf(
                 Sentence(id = 7, correctWords = listOf("Мысық", "сүт", "ішіп", "отыр")),
                 Sentence(id = 8, correctWords = listOf("Аю", "орманда", "тұрады"))
             )
         ),
         SentenceCategory(
-            name = "Цвета",
+            name = "Урок 5",
             sentences = listOf(
                 Sentence(id = 9, correctWords = listOf("Бұл", "гүл", "қызыл", "түсті")),
                 Sentence(id = 10, correctWords = listOf("Менің", "көйлегім", "көк", "түсті"))
             )
         ),
         SentenceCategory(
-            name = "Еда",
+            name = "Урок 6",
             sentences = listOf(
                 Sentence(id = 11, correctWords = listOf("Мен", "ет", "жегенді", "ұнатамын")),
                 Sentence(id = 12, correctWords = listOf("Сүт", "денсаулыққа", "пайдалы"))
             )
         ),
         SentenceCategory(
-            name = "Часто употребляемые глаголы",
+            name = "Урок 7",
             sentences = listOf(
                 Sentence(id = 13, correctWords = listOf("Мен", "кешке", "жүгіремін")),
                 Sentence(id = 14, correctWords = listOf("Ол", "кітап", "оқып", "отыр"))
             )
         ),
         SentenceCategory(
-            name = "Время и дни недели",
+            name = "Урок 8",
+            sentences = listOf(
+                Sentence(id = 15, correctWords = listOf("Бүгін", "дүйсенбі")),
+                Sentence(id = 16, correctWords = listOf("Жексенбіде", "мен", "демаламын"))
+            )
+        ),
+        SentenceCategory(
+            name = "Урок 9",
             sentences = listOf(
                 Sentence(id = 15, correctWords = listOf("Бүгін", "дүйсенбі")),
                 Sentence(id = 16, correctWords = listOf("Жексенбіде", "мен", "демаламын"))
             )
         )
+
     )
 
     override fun onBindView() {

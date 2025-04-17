@@ -7,7 +7,8 @@ data class User(
     var pictureUrl: String? = null,
     var dailyTime:Int? = null,
     var isAdmin:Boolean = false,
-    var achievements: Map<String, Achievement>? = null
+    var achievements: Map<String, Achievement>? = null,
+    var learnedWordsCount:Int? = null,
 //    var favorites: Map<String, Product> = emptyMap(),
 //    var favoritesRent: Map<String, Product> = emptyMap(),
 )

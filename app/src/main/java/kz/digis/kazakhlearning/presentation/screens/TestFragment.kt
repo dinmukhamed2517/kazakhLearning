@@ -110,7 +110,6 @@ class TestFragment : Fragment() {
                 val totalQuestions = currentTest.questions.size
                 if(correctAnswers > totalQuestions/2){
                     showSuccessDialog(correctAnswers, totalQuestions)
-                    awardAchievementForTest()
 
                 }else{
                     showFailureDialog(correctAnswers, totalQuestions)

@@ -21,4 +21,11 @@ interface WordCardDao {
     suspend fun getKnownWords(category: String): List<WordCard>
     @Update
     suspend fun updateAll(cards: List<WordCard>)
+    @Query("SELECT * FROM word_cards WHERE isKnown = 1")
+    suspend fun getAllKnownWords(): List<WordCard>
+
+    @Query("DELETE FROM word_cards")
+    suspend fun deleteAll()
+
+
 }

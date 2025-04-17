@@ -23,11 +23,10 @@ class WordViewModel @Inject constructor(
         return dao.getKnownWords(category).map { it.kazakhWord }
     }
 
-    fun markWordsAsKnown(words: List<WordCard>) {
-        viewModelScope.launch {
-            dao.updateAll(words.map { it.copy(isKnown = true) })
-        }
+    suspend fun getAllKnownWords(): List<WordCard> {
+        return dao.getAllKnownWords()
     }
+
 
     fun getWordsByCategory(category: String) = dao.getWordsByCategory(category)
 
@@ -41,9 +40,16 @@ class WordViewModel @Inject constructor(
         }
     }
 
-    fun insertAll(words: List<WordCard>) {
+    fun deleteAllWords() {
         viewModelScope.launch {
-            dao.updateAll(words)
+            dao.deleteAll()
         }
     }
+
+    fun insertAll(words: List<WordCard>) {
+        viewModelScope.launch {
+            words.forEach { dao.insertWord(it) } // Use insert instead of updateAll
+        }
+    }
+
 }

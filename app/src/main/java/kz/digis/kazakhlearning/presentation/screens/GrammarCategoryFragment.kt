@@ -21,14 +21,15 @@ class GrammarCategoryFragment: BaseFragment<FragmentGrammarCategoryBinding>(Frag
     lateinit var categoryDao: CategoryDao
 
     private val categoryList:List<Category> = listOf(
-        Category(2, R.drawable.category2, "Цифры"),
-        Category(3, R.drawable.category3, "Приветствия и прощания"),
-        Category(4, R.drawable.category4, "Семья"),
-        Category(5, R.drawable.category5, "Еда"),
-        Category(6, R.drawable.category6, "Цвета"),
-        Category(7, R.drawable.category7, "Время и дни недели"),
-        Category(8, R.drawable.category8, "Животные"),
-        Category(9, R.drawable.category9, " Часто употребляемые глаголы"),
+        Category(2, R.drawable.category2, "Урок 1"),
+        Category(3, R.drawable.category3, "Урок 2"),
+        Category(4, R.drawable.category4, "Урок 3"),
+        Category(5, R.drawable.category5, "Урок 4"),
+        Category(6, R.drawable.category6, "Урок 5"),
+        Category(7, R.drawable.category7, "Урок 6"),
+        Category(8, R.drawable.category8, "Урок 7"),
+        Category(9, R.drawable.category9, "Урок 8"),
+        Category(9, R.drawable.category9, "Урок 9"),
 
         )
     override fun onBindView() {
@@ -45,10 +46,7 @@ class GrammarCategoryFragment: BaseFragment<FragmentGrammarCategoryBinding>(Frag
         }
 
         adapter.itemClick = { category ->
-            lifecycleScope.launch {
-                categoryDao.insertCategory(category)
-            }
-            val action = GrammarCategoryFragmentDirections.actionGrammarCategoryFragmentToGrammarFragment(category.categoryTitle)
+            val action = GrammarCategoryFragmentDirections.actionGrammarCategoryFragmentToTutorialFragment(category.categoryTitle)
             findNavController().navigate(action)
         }
     }
